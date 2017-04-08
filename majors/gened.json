@@ -1,26 +1,21 @@
 {
     "requirements": [
-        "AW",
-        "PW",
-        "OC",
-        "MA",
-        "AR",
-        "NL",
-        "NS",
-        "HS",
-        "HS",
-        "HU",
-        "HU",
-        "SP",
-        "SP",
-        "IS",
-        "IS",
-        "UP",
-        {
-            "courses": [
-                "UP",
-                "CC"
-            ]
-        }
+        { "name": "AW", "credits": 3, "min_semester": 0 },
+        { "name": "PW", "credits": 3, "min_semester": 4 },
+        { "name": "OC", "credits": 3, "min_semester": 0 },
+        { "name": "MA", "credits": 3, "min_semester": 0 },
+        { "name": "AR", "credits": 3, "min_semester": 0 },
+        { "name": "NL", "credits": 3, "min_semester": 0 },
+        { "name": "NS", "credits": 3, "min_semester": 0 },
+        { "name": "HS", "credits": 3, "min_semester": 0 },
+        { "name": "HS", "credits": 3, "min_semester": 0 },
+        { "name": "HU", "credits": 3, "min_semester": 0 },
+        { "name": "HU", "credits": 3, "min_semester": 0 },
+        { "name": "SP", "credits": 3, "min_semester": 0 },
+        { "name": "SP", "credits": 3, "min_semester": 0 },
+        { "name": "IS", "credits": 3, "min_semester": 0 },
+        { "name": "IS", "credits": 3, "min_semester": 0 },
+        { "name": "UP", "credits": 3, "min_semester": 0 },
+        { "name": "UP|CC", "choose":["UP", "CC"], "credits": 3, "min_semester": 0}
     ]
 }

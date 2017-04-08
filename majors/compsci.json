@@ -77,6 +77,10 @@
         }
     ],
     "choices": {
+        "pick": 7,
+        "min_groups": 3,
+        "max_groups": -1,
+        "max_per_group": 4,
         "groups": [
             [
                 "CMSC411",
@@ -157,5 +161,6 @@
     },
     "rules": {
         "CMSC4XX": 2
-    }
+    },
+    "fufills": ["MA", "AR"]
 }

@@ -2,6 +2,7 @@ var fs = require('fs');
 var request = require('request');
 
 var major = JSON.parse(fs.readFileSync('majors/compsci.json', 'utf8'));
+var geneds = JSON.parse(fs.readFileSync('majors/gened.json', 'utf8'));
 var semesters = [
     { "courses":[], "credits": 0 },
     { "courses":[], "credits": 0 },
@@ -92,6 +93,45 @@ function getCredits(name) {
     return 0;
 }
 
+function verifyGroups(classes) {
+    var groupCount = {};
+
+    if(classes.length != major.choices.pick) {
+        return false;
+    }
+
+    for(var i = 0; i < classes.length; i++) {
+        for(var group in major.choices.groups) {
+            if(major.choices.groups[group].indexOf(classes[i]) != -1) {
+                console.log();
+                if(groupCount[major.choices.groups.indexOf(major.choices.groups[group])] == undefined) {
+                    groupCount[major.choices.groups.indexOf(major.choices.groups[group])] = 1;
+                } else {
+                    groupCount[major.choices.groups.indexOf(major.choices.groups[group])]++;
+                }
+            }
+        }
+    }
+    var size = 0;
+    //We have all the counts, check if it's valid
+    for(var key in groupCount) {
+        if(groupCount.hasOwnProperty(key)) {
+            size++;
+            if(groupCount[key] > major.choices.max_per_group) {
+                return false;
+            }
+
+        }
+    }
+    if(size < major.choices.min_groups) {
+        return false;
+    }
+    if(size > major.choices.max_groups && major.choices.max_groups != -1) {
+        return false;
+    }
+    return true;
+}
+
 for(var key in requirements) {
     if(requirements.hasOwnProperty(key)) {
         addEarliest(requirements[key].name);
@@ -100,4 +140,4 @@ for(var key in requirements) {
 
 //queryClass("CMSC216");
 console.log(semesters);
-
+///console.log(verifyGroups(["CMSC411", "CMSC420", "CMSC412", "CMSC451", "CMSC460", "CMSC430", "CMSC433"]));

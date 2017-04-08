@@ -132,11 +132,34 @@ function verifyGroups(classes) {
     return true;
 }
 
+function checkRequirements(classes) {
+    var remaining = geneds.requirements;
+
+    for(var i = 0; i < classes.length; i++) {
+        for(var key in classes[i].gen_eds) {
+            if(remaining.indexOf(classes[i].gen_eds[key]) != -1) {
+                remianing.splice(remaining.indexOf(classes[i].gen_eds[key]), 1);
+            }
+        }
+    }
+    return remaining.length == 0;
+}
+
+function insertPlaceholders() {
+    for(var i = 0; i < 8; i++) {
+        while(semesters[i].credits < 14) {
+            semesters[i].courses.push("Placeholder");
+            semesters[i].credits += 3;
+        }
+    }
+}
+
 for(var key in requirements) {
     if(requirements.hasOwnProperty(key)) {
         addEarliest(requirements[key].name);
     }
 }
+insertPlaceholders();
 
 //queryClass("CMSC216");
 console.log(semesters);

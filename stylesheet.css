@@ -16,9 +16,6 @@ body {
     text-align: center;
 }
 
-.col{
-    padding-left: 1.5rem;
-}
 
 html, body, .container{
     height: 100%;
@@ -32,11 +29,22 @@ html, body, .container{
     box-sizing: border-box;
 }
 
+
 .row{
-    padding-top: 50px;
+    padding-top: 0px;
     height: 100%;
 }
 
 .card{
+    margin-bottom: 60px;
     height: 90%;
 }
+
+.card-title, row{
+    padding-top: 0;
+}
+
+p.col{
+    text-align: center;
+}
+

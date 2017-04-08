@@ -1,0 +1,63 @@
+{
+    "requirements": [
+        "[BM1]",
+        "[BM2]",
+        "CMSC330",
+        "CMSC351",
+        {
+            "courses":[
+                "MATHXXX",
+                "STATXXX"
+            ],
+            "prereqs": [
+                "MATH141"
+            ]
+        },
+        "STAT4XX",
+        "CMSC4XX",
+        "CMSC4XX",
+        "CMSC4XX",
+        "CMSC4XX",
+        "CMSC4XX",
+        "CMSC4XX",
+        "CMSC4XX"
+    ],
+    "supporting": [
+        {
+            "courses":[
+                "UL3XX",
+                "UL4XX"
+            ]
+        },
+        {
+            "courses":[
+                "UL3XX",
+                "UL4XX"
+            ]
+        },
+        {
+            "courses":[
+                "UL3XX",
+                "UL4XX"
+            ]
+        },
+        {
+            "courses":[
+                "UL3XX",
+                "UL4XX"
+            ]
+        }
+    ],
+    "benchmarks":{
+        "1": [
+            "MATH140",
+            "CMSC131"
+        ],
+        "2": [
+            "MATH141",
+            "CMSC132",
+            "CMSC216",
+            "CMSC250"
+        ]
+    }
+}

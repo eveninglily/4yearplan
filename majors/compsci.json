@@ -1,7 +1,11 @@
 {
     "requirements": [
-        "[BM1]",
-        "[BM2]",
+        "MATH140",
+        "CMSC131",
+        "MATH141",
+        "CMSC132",
+        "CMSC216",
+        "CMSC250",
         "CMSC330",
         "CMSC351",
         {
@@ -49,15 +53,24 @@
         }
     ],
     "benchmarks":{
-        "1": [
-            "MATH140",
-            "CMSC131"
-        ],
-        "2": [
-            "MATH141",
-            "CMSC132",
-            "CMSC216",
-            "CMSC250"
-        ]
+        "1": {
+            "semester": 2,
+            "courses":[
+                "MATH140",
+                "CMSC131"
+            ]
+        },
+        "2": {
+            "semester": 4,
+            "courses": [
+                "MATH141",
+                "CMSC132",
+                "CMSC216",
+                "CMSC250"
+            ]
+        }
+    },
+    "rules": {
+        "CMSC4XX": 2
     }
 }

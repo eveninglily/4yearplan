@@ -152,8 +152,9 @@ function verifyGroups(classes) {
     return true;
 }
 
+//TODO: This is broken. Rewrite to fit new gened format
 function checkRequirements(classes) {
-    var remaining = geneds.requirements;
+    /*var remaining = geneds.requirements;
 
     for(var i = 0; i < classes.length; i++) {
         for(var key in classes[i].gen_eds) {
@@ -162,7 +163,8 @@ function checkRequirements(classes) {
             }
         }
     }
-    return remaining.length == 0;
+    return remaining.length == 0;*/
+    return false;
 }
 
 function insertPlaceholders() {

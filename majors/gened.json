@@ -1,21 +1,21 @@
 {
     "requirements": [
-        "FSAW",
-        "FSPW",
-        "FSOC",
-        "FSMA",
-        "FSAR",
-        "DSNL",
-        "DSNS",
-        "DSHS",
-        "DSHS",
-        "DSHU",
-        "DSHU",
-        "DSSP",
-        "DSSP",
-        "IS",
-        "IS",
-        "DVUP",
-        "DVUP"
+        ["FSAW"],
+        ["FSPW"],
+        ["FSOC"],
+        ["FSMA"],
+        ["FSAR"],
+        ["DSNL"],
+        ["DSNS"],
+        ["DSHS"],
+        ["DSHS"],
+        ["DSHU"],
+        ["DSHU"],
+        ["DSSP"],
+        ["DSSP"],
+        ["IS"],
+        ["IS"],
+        ["DVUP"],
+        ["DVUP", "DVCC"]
     ]
 }

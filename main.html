@@ -16,8 +16,11 @@
     </head>
 
     <body>
+      <nav class = "navbar fixed-top nav-light bg-primary">
+        <a class = "navbar-brand"><strong class>gradu8</strong>
+        </a>
+        </nav>
         <div class = "container">
-            <h3>umd4year <h5>The Definitive Four Year Planner for the University of Maryland</h5></h3>
             <div class = "row">
                 <div class = "col-md-4 col col-sm-3 col lg 2">
                     <div class = "card">
@@ -94,13 +97,8 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Freshman Year
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-<<<<<<< HEAD
                               <li><a href="#panel1" id="panel1">Semester 1</a></li>
                               <li><a href="#panel2" id="panel2">Semester 2</a></li>
-=======
-                              <li><a href="#panel1">Semester 1</a>
-                              <li><a href="#panel2">Semester 2</a></li>
->>>>>>> f2ddd14958fd34c144416a2f1c361b48c7897738
                             </ul>
                           </li>
                           <li class="dropdown">
@@ -132,7 +130,15 @@
                     
                     <!--panel1-->
                     <div class = "tabcontent" id = "sem1">
-                        Sem 1
+                        <a class="btn btn-primary" data-toggle="collapse" href="#classes" aria-expanded="false" aria-controls="classes">
+                            MATH141
+                        </a>
+                        <div class="collapse" id="classes">
+                            <div class="card card-block">
+                                <p>Fulfills the Fundamental Studies: Analytical Reasoning Requirement.</p>
+                                <p>Fulfills the major requirement for Computer Science.</p>
+                            </div><!--card-->
+                        </div><!--collapse-->
                     </div>
                     <!--/panel1-->
                     <!--panel2-->
@@ -168,10 +174,9 @@
                 </div> <!--card-->
             </div> <!-- row -->
         </div>
-        <footer class="footer">
+        <footer class="navbar fixed-bottom navbar-light bg-faded">
             <div class = "container">
-                <br>
-                <p class = "text-muted">A project for Bitcamp 2017 by Aidan McGovern, Evan McIntire, Jacob Cohen, and Justin Chen.</p>
+                <p class = "text-muted text-center">A project for Bitcamp 2017 by Aidan McGovern, Evan McIntire, Jacob Cohen, and Justin Chen.</p>
             </div>
         </footer>
         

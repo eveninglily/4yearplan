@@ -55,7 +55,7 @@
             "generic": true
         },
         {
-            "name": ["MATHXXX", "STATXXX"],
+            "name": ["STAT4XX", "MATHXXX"],
             "prereqs": ["MATH141"],
             "credits": 3,
             "generic": true
@@ -143,6 +143,7 @@
         ]
     },
     "rules": {
-        "CMSC4XX": 2
+        "CMSC4XX": 2,
+        "STAT4XX": 1
     }
 }

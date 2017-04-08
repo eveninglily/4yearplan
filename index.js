@@ -16,20 +16,9 @@ var io = require('socket.io')(http);
 
 io.on('connection', function(socket) {
     socket.on('get_schedule', function() {
-        socket.emit({"semesters": "[ { courses: [ 'MATH140', 'CMSC131', 'Placeholder', 'Placeholder' ], credits: 14 }, { courses: [ 'MATH141', 'CMSC132', 'Placeholder', 'Placeholder' ], credits: 14 }, { courses: [ 'CMSC216', 'CMSC250', 'STAT4XX', 'MATHXXX/STATXXX' ], credits: 14 }, { courses: [ 'CMSC330', 'CMSC351', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 } ]"});
+        socket.emit({"semesters": semesters});
     });
 });
-
-var courses = {};
-var majors = {
-    "CMSC": JSON.parse(fs.readFileSync('majors/CMSC.json', 'utf8'))
-}
-
-//TODO: Deprecated
-var major = JSON.parse(fs.readFileSync('majors/CMSC.json', 'utf8'));
-
-
-
 /* Courses */
 class Course {
     constructor(json) {
@@ -40,13 +29,39 @@ class Course {
     }
 
     compare(other) {
-        for(var i = 0; i < ids.length; i++) {
+        for(var i = 0; i < this.ids.length; i++) {
             if(other.ids.indexOf(this.ids[i]) != -1) {
                 return true;
             }
         }
         return false;
     }
+
+    getFullPrereqs() {
+        var full = this.prereqs;
+        for(var i = 0; i < this.prereqs.length; i++) {
+            full = full.concat(courses[full[i]].getFullPrereqs());
+        }
+        return full.filter(function(item, pos) {
+            return full.indexOf(item) == pos;
+        });
+    }
+
+    toString() {
+        return this.ids[0];
+    }
+}
+
+function loadToClasses(json, loadGeneric) {
+    var ret = [];
+    for(var key in json) {
+        if(json.hasOwnProperty(key)) {
+            if(!json[key].generic || loadGeneric) {
+                ret.push(new Course(majors["CMSC"].requirements[key]));
+            }
+        }
+    }
+    return ret;
 }
 
 var geneds = JSON.parse(fs.readFileSync('majors/gened.json', 'utf8'));
@@ -61,83 +76,65 @@ var semesters = [
     { "courses":[], "credits": 0 }
 ];
 
-var requirements = major.requirements;
-
 function queryClass(name, callback) {
     request('http://api.umd.io/v0/courses/' + name, function(error, response, body) {
         callback(body);
     });
 }
 
-function getFullPrereqs(name) {
-    var full = [];
-    var cl;
-    for(var key in requirements) {
-        if(requirements.hasOwnProperty(key)) {
-            if(requirements[key].name == name) {
-                cl = requirements[key];
-                full = requirements[key].prereqs;
-                for(var req in requirements[key].prereqs) {
-                    if(requirements[key].prereqs.hasOwnProperty(req)) {
-                        full = full.concat(getFullPrereqs(requirements[key].prereqs[req]));
-                    }
-                }
-            }
-        }
-    }
-    return full.filter(function(item, pos) {
-        return full.indexOf(item) == pos;
-    });
-}
-
-function canTakeInSemester(name, semester) {
+function canTakeInSemester(course, semester) {
     var classes = [];
     for(var i = 0; i < semester; i++) {
         classes = classes.concat(semesters[i].courses);
     }
 
-    var reqs = getFullPrereqs(name);
-
+    var reqs = course.getFullPrereqs();
+    var ids = getIds(classes);
     reqs = reqs.filter(function(item) {
-        return classes.indexOf(item) == -1;
+        for(var i = 0; i < courses[item].ids.length; i++) {
+            if(ids.indexOf(courses[item].ids[i]) != -1) {
+                return false
+            }
+        }
+
+        return true;
     });
     return reqs.length == 0;
 }
 
+function getIds(classes) {
+    var ids = [];
+    for(var i = 0; i < classes.length; i++) {
+        for(var j = 0; j < classes[i].ids.length; j++) {
+            ids.push(classes[i].ids[j]);
+        }
+    }
+    return ids;
+}
+
 //returns false if it couldnt
-function addEarliest(name) {
+function addEarliest(course) {
     for(var i = 0; i < 8; i++) {
-        if(canTakeInSemester(name, i) && checkAmounts(name, semesters[i])) {
-            semesters[i].courses.push(name);
-            semesters[i].credits += getCredits(name);
+        if(canTakeInSemester(course, i) && checkAmounts(course, semesters[i])) {
+            semesters[i].courses.push(course);
+            semesters[i].credits += course.credits;
             return true;
         }
     }
     return false;
 }
 
-function checkAmounts(name, semester) {
+function checkAmounts(course, semester) {
     var count = 0;
     for(var i = 0; i < semester.courses.length; i++) {
-        if(semester.courses[i] == name) {
+        if(course.compare(semester.courses[i])) {
             count++;
-            if(count >= major.rules[name]) {
+            if(count >= majors["CMSC"].rules[course.ids[0]]) {
                 return false;
             }
         }
     }
     return true;
-}
-
-function getCredits(name) {
-    for(var key in requirements) {
-        if(requirements.hasOwnProperty(key)) {
-            if(requirements[key].name == name) {
-                return requirements[key].credits;
-            }
-        }
-    }
-    return 0;
 }
 
 function verifyGroups(classes) {
@@ -150,7 +147,6 @@ function verifyGroups(classes) {
     for(var i = 0; i < classes.length; i++) {
         for(var group in major.choices.groups) {
             if(major.choices.groups[group].indexOf(classes[i]) != -1) {
-                console.log();
                 if(groupCount[major.choices.groups.indexOf(major.choices.groups[group])] == undefined) {
                     groupCount[major.choices.groups.indexOf(major.choices.groups[group])] = 1;
                 } else {
@@ -197,19 +193,31 @@ function checkRequirements(classes) {
 function insertPlaceholders() {
     for(var i = 0; i < 8; i++) {
         while(semesters[i].credits < 14) {
-            semesters[i].courses.push("Placeholder");
+            semesters[i].courses.push(new Course({ids:"Placeholder", credits:3, prereqs:[], generic:true}));
             semesters[i].credits += 3;
         }
     }
 }
 
-for(var key in requirements) {
-    if(requirements.hasOwnProperty(key)) {
-        addEarliest(requirements[key].name);
+var courses = {};
+var majors = {
+    "CMSC": JSON.parse(fs.readFileSync('majors/CMSC.json', 'utf8'))
+}
+
+var reqs = {};
+
+for(var key in majors["CMSC"].requirements) {
+    if(majors["CMSC"].requirements.hasOwnProperty(key)) {
+        if(!majors["CMSC"].requirements[key].generic) {
+            courses[majors["CMSC"].requirements[key].name] = (new Course(majors["CMSC"].requirements[key]));
+        }
+    }
+}
+reqs["CMSC"] = loadToClasses(majors["CMSC"].requirements, true);
+for(var key in reqs["CMSC"]) {
+    if(reqs["CMSC"].hasOwnProperty(key)) {
+        addEarliest(reqs["CMSC"][key]);
     }
 }
 insertPlaceholders();
-
-//queryClass("CMSC216");
 console.log(semesters);
-///console.log(verifyGroups(["CMSC411", "CMSC420", "CMSC412", "CMSC451", "CMSC460", "CMSC430", "CMSC433"]));

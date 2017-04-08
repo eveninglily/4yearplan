@@ -1,0 +1,106 @@
+{
+    "requirements": [
+        {
+            "name": ["FSAW"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["FSPW"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["FSOC"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["FSMA"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["FSAR"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DSNL"],
+            "prereqs": [],
+            "credits": 4,
+            "generic": true
+        },
+        {
+            "name": ["DSNS"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DSHS"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DSHS"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DSHU"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DSHU"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DSSP"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DSSP"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["IS"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["IS"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DVUP"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        },
+        {
+            "name": ["DVUP", "DVCC"],
+            "prereqs": [],
+            "credits": 3,
+            "generic": true
+        }
+    ]
+}

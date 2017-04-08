@@ -100,3 +100,4 @@ for(var key in requirements) {
 
 //queryClass("CMSC216");
 console.log(semesters);
+

@@ -29,7 +29,7 @@
 
 //Year seperator tabs
   $( function() {
-    $( ".col-md-8.col" ).tabs();
+    $( ".col-md-8.col.card" ).tabs();
   });
 
 //Autocomplete majors

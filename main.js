@@ -18,19 +18,23 @@
     });
   } );
 
-/*    function prepareEventHandlers() {
-  	jQuery( "#speed" ).hide();
+   function prepareEventHandlers() {
+  	for(var i = 1; i <= 8; i++){
+      jQuery( ".panel"+i).hide();
+    }
   };
   
   window.onload = function() {
-  	prepareEventHandlers;
+    prepareEventHandlers();
   };
-  */
+
+$( ".dropdown-menu" ).click(function() {
+  console.log($( ".dropdown-menu" ).event());
+  prepareEventHandlers();
+  //What to write here???
+});
 
 //Year seperator tabs
-  $( function() {
-    $( ".col-md-8.col.card" ).tabs();
-  });
 
 //Autocomplete majors
   $( function() {

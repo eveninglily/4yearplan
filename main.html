@@ -2,72 +2,178 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
-
-        <title>umd4year</title>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Material Design Bootstrap</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="style1.css" rel="stylesheet">
-
-        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="js/ie-emulation-modes-warning.js"></script>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="stylesheet.css" rel="stylesheet">
     </head>
 
     <body>
-
-        <div class="site-wrapper">
-            <div class="site-wrapper-inner">
-                    <div class="masthead clearfix"> <!--Header element-->
-                        <div class="inner">
-                            <h3 class="masthead-brand">umd4year</h3>
-                        </div>
-                    </div>
-                    <div class = "container planner">
-                        <div class = "row">
-                            <div class ="col-md-3">
+        <div class = "container">
+            <h3>umd4year <h5>The Definitive Four Year Planner for the University of Maryland</h5></h3>
+            <div class = "row">
+                <div class = "col-md-4 col col-sm-3 col lg 2">
+                    <div class = "card">
+                        <div class = "card-block">
+                            <h4 class = "card-title">
                                 Requirements
-                                <div class="ui-widget">
-                                    <label for="tags">Majors: </label>
-                                    <input id="tags">
+                            </h4>
+                            <div class = "scrolling">
+                                <div class = "child">
+                                    <div id = "gened">
+                                        <p>
+                                            <a class="btn btn-primary" data-toggle="collapse" href="#generaled" aria-expanded="false" aria-controls="generals">
+                                                General Education
+                                            </a>
+                                        </p>
+                                        <div class="collapse" id="generaled">
+                                            <div class="card card-block">
+                                                FSAW
+                                                FSPW
+                                                FSOC
+                                                FSAR
+                                                FSAR
+                                            </div><!--card-->
+                                        </div><!--collapse-->
+                                    </div><!--gened-->
+                                    <div id = "Major">
+                                        <p>
+                                            <a class="btn btn-primary" data-toggle="collapse" href="#major" aria-expanded="false" aria-controls="majors">
+                                                Major Requirements
+                                            </a>
+                                        </p>
+                                        <div class="collapse" id="major">
+                                            <div class="card card-block">
+                                                STAT4XX
+                                                MATH1XX
+                                            </div><!--card-->
+                                        </div><!--collapse-->
+                                    </div><!--gened-->
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                       <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
+                                    <p>filler</p>
                                 </div>
                             </div>
-                            <div class = "col-md-6">
-                                Planner
-                            </div>
-                            <div class = "col-md-3">
-                                Courses
-                            </div>
                         </div>
                     </div>
-
-                <!--Footer below-->
-                    <div class="mastfoot">
-                        <div class="inner">
-                           <p>A project for Bitcamp 2017 by Aidan McGovern, Evan McIntire, Jacob Cohen, and Justin Chen.</p>
-                        </div>
+                </div><!--col-->
+                <div class = "col-md-8 col card col sm-9 col lg-10">
+                    <div class = "card-title">
+                        <ul class="nav nav-tabs">
+                          <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Freshman Year
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+<<<<<<< HEAD
+                              <li><a href="#panel1" id="panel1">Semester 1</a></li>
+                              <li><a href="#panel2" id="panel2">Semester 2</a></li>
+=======
+                              <li><a href="#panel1">Semester 1</a>
+                              <li><a href="#panel2">Semester 2</a></li>
+>>>>>>> f2ddd14958fd34c144416a2f1c361b48c7897738
+                            </ul>
+                          </li>
+                          <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sophomore Year
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#panel3" id="panel3">Semester 3</a></li>
+                              <li><a href="#panel4" id="panel4">Semester 4</a></li>
+                            </ul>
+                          </li>
+                          <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Junior Year
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#panel5" id="panel5">Semester 5</a></li>
+                              <li><a href="#panel6" id="panel6">Semester 6</a></li>
+                            </ul>
+                          </li>
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Senior Year
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#panel7" id="panel7">Semester 7</a></li>
+                              <li><a href="#panel8" id="panel8">Semester 8</a></li>
+                            </ul>
+                          </li>
+                        </ul>
                     </div>
-
-            </div>
-
+                    
+                    <!--panel1-->
+                    <div class = "tabcontent" id = "sem1">
+                        Sem 1
+                    </div>
+                    <!--/panel1-->
+                    <!--panel2-->
+                    <div class = "tabcontent" id = "sem2">
+                        Sem 2
+                    </div>
+                    <!--/panel2-->
+                    <!--panel3-->
+                    <div class = "tabcontent" id = "sem3">
+                        Sem 3
+                    </div>
+                    <!--/panel3-->
+                    <div class = "tabcontent" id = "sem4">
+                        Sem 4
+                    </div>
+                    <!--/panel4-->
+                    <div class = "tabcontent" id = "sem5">
+                        Sem 5
+                    </div>
+                    <!--/panel5-->
+                    <div class = "tabcontent" id = "sem6">
+                        Sem 6
+                    </div>
+                    <!--/pane6-->
+                    <div class = "tabcontent" id = "sem7">
+                        Sem 7
+                    </div>
+                    <!--/panel7-->
+                    <div class = "tabcontent" id = "sem8">
+                        Sem 8
+                    </div>
+                    <!--/panel8-->
+                </div> <!--card-->
+            </div> <!-- row -->
         </div>
+        <footer class="footer">
+            <div class = "container">
+                <br>
+                <p class = "text-muted">A project for Bitcamp 2017 by Aidan McGovern, Evan McIntire, Jacob Cohen, and Justin Chen.</p>
+            </div>
+        </footer>
         
 
         <!-- Bootstrap core JavaScript

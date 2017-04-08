@@ -16,12 +16,39 @@ var io = require('socket.io')(http);
 
 io.on('connection', function(socket) {
     socket.on('get_schedule', function() {
-        socket.emit({"semesters": semesters});
+        socket.emit({"semesters": "[ { courses: [ 'MATH140', 'CMSC131', 'Placeholder', 'Placeholder' ], credits: 14 }, { courses: [ 'MATH141', 'CMSC132', 'Placeholder', 'Placeholder' ], credits: 14 }, { courses: [ 'CMSC216', 'CMSC250', 'STAT4XX', 'MATHXXX/STATXXX' ], credits: 14 }, { courses: [ 'CMSC330', 'CMSC351', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 }, { courses: [ 'CMSC4XX', 'Placeholder', 'Placeholder', 'Placeholder', 'Placeholder' ], credits: 15 } ]"});
     });
 });
 
+var courses = {};
+var majors = {
+    "CMSC": JSON.parse(fs.readFileSync('majors/CMSC.json', 'utf8'))
+}
 
-var major = JSON.parse(fs.readFileSync('majors/compsci.json', 'utf8'));
+//TODO: Deprecated
+var major = JSON.parse(fs.readFileSync('majors/CMSC.json', 'utf8'));
+
+
+
+/* Courses */
+class Course {
+    constructor(json) {
+        this.ids = json.name;
+        this.prereqs = json.prereqs;
+        this.credits = json.credits;
+        this.generic = json.generic;
+    }
+
+    compare(other) {
+        for(var i = 0; i < ids.length; i++) {
+            if(other.ids.indexOf(this.ids[i]) != -1) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 var geneds = JSON.parse(fs.readFileSync('majors/gened.json', 'utf8'));
 var semesters = [
     { "courses":[], "credits": 0 },

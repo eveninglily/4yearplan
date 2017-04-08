@@ -1,89 +1,106 @@
 {
     "requirements": [
         {
-            "name": "MATH140",
+            "name": ["MATH140"],
             "prereqs": [],
-            "credits": 4
+            "credits": 4,
+            "generic": false
         },
         {
-            "name": "CMSC131",
+            "name": ["CMSC131"],
             "prereqs": [],
-            "credits": 4
+            "credits": 4,
+            "generic": false
         },
         {
-            "name": "MATH141",
+            "name": ["MATH141"],
             "prereqs": ["MATH140"],
-            "credits": 4
+            "credits": 4,
+            "generic": false
         },
         {
-            "name": "CMSC132",
+            "name": ["CMSC132"],
             "prereqs": ["CMSC131", "MATH140"],
-            "credits": 4
+            "credits": 4,
+            "generic": false
         },
         {
-            "name": "CMSC216",
+            "name": ["CMSC216"],
             "prereqs": ["CMSC132", "MATH141"],
-            "credits": 4
+            "credits": 4,
+            "generic": false
         },
         {
-            "name": "CMSC250",
+            "name": ["CMSC250"],
             "prereqs": ["CMSC132", "MATH141"],
-            "credits": 4
+            "credits": 4,
+            "generic": false
         },
         {
-            "name": "CMSC330",
+            "name": ["CMSC330"],
             "prereqs": ["CMSC216", "CMSC250"],
-            "credits": 3
+            "credits": 3,
+            "generic": false
         },
         {
-            "name": "CMSC351",
+            "name": ["CMSC351"],
             "prereqs": ["CMSC216", "CMSC250"],
-            "credits": 3
+            "credits": 3,
+            "generic": false
         },
         {
-            "name": "STAT4XX",
+            "name": ["STAT4XX"],
             "prereqs": ["MATH141"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "MATHXXX/STATXXX",
+            "name": ["MATHXXX", "STATXXX"],
             "prereqs": ["MATH141"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "CMSC4XX",
+            "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "CMSC4XX",
+            "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "CMSC4XX",
+            "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "CMSC4XX",
+            "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "CMSC4XX",
+            "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "CMSC4XX",
+            "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         },
         {
-            "name": "CMSC4XX",
+            "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
-            "credits": 3
+            "credits": 3,
+            "generic": true
         }
     ],
     "choices": {
@@ -125,53 +142,7 @@
             ]
         ]
     },
-    "supporting": [
-        {
-            "courses":[
-                "UL3XX",
-                "UL4XX"
-            ]
-        },
-        {
-            "courses":[
-                "UL3XX",
-                "UL4XX"
-            ]
-        },
-        {
-            "courses":[
-                "UL3XX",
-                "UL4XX"
-            ]
-        },
-        {
-            "courses":[
-                "UL3XX",
-                "UL4XX"
-            ]
-        }
-    ],
-    "benchmarks":{
-        "1": {
-            "semester": 2,
-            "courses":[
-                "MATH140",
-                "CMSC131"
-            ]
-        },
-        "2": {
-            "semester": 4,
-            "courses": [
-                "MATH141",
-                "CMSC132",
-                "CMSC216",
-                "CMSC250"
-            ]
-        }
-    },
     "rules": {
-        "CMSC4XX": 2,
-        "MATHXXX": 1
-    },
-    "fufills": ["MA", "AR"]
+        "CMSC4XX": 2
+    }
 }

@@ -41,6 +41,17 @@
             "credits": 3
         },
         {
+            "name": "MATHXXX",
+            "disp": "STAT4XX",
+            "prereqs": ["MATH141"],
+            "credits": 3
+        },
+        {
+            "name": "MATHXXX",
+            "prereqs": ["MATH141"],
+            "credits": 3
+        },
+        {
             "name": "CMSC4XX",
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3
@@ -160,7 +171,8 @@
         }
     },
     "rules": {
-        "CMSC4XX": 2
+        "CMSC4XX": 2,
+        "MATHXXX": 1
     },
     "fufills": ["MA", "AR"]
 }

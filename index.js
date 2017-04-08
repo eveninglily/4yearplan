@@ -1,6 +1,26 @@
 var fs = require('fs');
 var request = require('request');
 
+/* Express Code */
+var express = require('express')
+var app = express()
+
+app.use(express.static('.'))
+app.listen(3000, function () {
+  console.log('Started Listening on Port 3000')
+});
+
+/* Socket.io code */
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket) {
+    socket.on('get_schedule', function() {
+        socket.emit({"semesters": semesters});
+    });
+});
+
+
 var major = JSON.parse(fs.readFileSync('majors/compsci.json', 'utf8'));
 var geneds = JSON.parse(fs.readFileSync('majors/gened.json', 'utf8'));
 var semesters = [

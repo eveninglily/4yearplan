@@ -1,0 +1,78 @@
+{
+    "requirements": [
+        {
+            "name": "MATH140",
+            "prereqs": [],
+            "credits": 4
+        },
+        {
+            "name": "MATH141",
+            "prereqs": ["MATH140"],
+            "credits": 4
+        },
+        {
+            "name": "MATH240",
+            "prereqs": ["MATH141"],
+            "credits": 4
+        },
+        {
+            "name": "MATH241",
+            "prereqs": ["MATH141"],
+            "credits": 4
+        },
+        {
+            "name": "MATH246",
+            "prereqs": ["MATH141"],
+            "credits": 3
+        },
+        {
+            "name": "MATH310",
+            "prereqs": ["MATH141", "MATH241"],
+            "credits": 3
+        },
+        {
+            "name": "MATH410",
+            "prereqs": ["MATH240", "MATH241","MATH310"],
+            "credits": 3
+        }
+    ],
+    "choices": {
+        "pick": 7,
+        "min_groups": 3,
+        "max_groups": -1,
+        "max_per_group": 4,
+        "groups": [
+            [
+                "CMSC411",
+                "CMSC412",
+                "CMSC414",
+                "CMSC417"
+            ],
+            [
+                "CMSC420",
+                "CMSC421",
+                "CMSC422",
+                "CMSC423",
+                "CMSC424",
+                "CMSC426",
+                "CMSC427"
+            ],
+            [
+                "CMSC430",
+                "CMSC433",
+                "CMSC434",
+                "CMSC435",
+                "CMSC436"
+            ],
+            [
+                "CMSC451",
+                "CMSC452",
+                "CMSC456"
+            ],
+            [
+                "CMSC460",
+                "CMSC466"
+            ]
+        ]
+    }
+}

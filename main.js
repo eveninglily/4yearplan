@@ -1,49 +1,15 @@
-/*jQuery(".btn.btn-lg.btn-default").click(function() {
-	console.log("Future AJAX event will be here!");
-	});*/
-	
-/*jQuery( function() {
-	jQuery( "#speed" ).selectmenu();
-	  } );
-  */
-  
-    jQuery( function() {
-    var availableMajors = [
-      "Computer Science (CMSC)",
-      "Mathematics (MATH)",
-      "Internet Studies (MEME)",
-    ];
-    jQuery( "#tags" ).autocomplete({
-      source: availableMajors
-    });
-  } );
-
-/*    function prepareEventHandlers() {
-  	jQuery( "#speed" ).hide();
-  };
-  
-  window.onload = function() {
-  	prepareEventHandlers;
-  };
-  */
-
-//Year seperator tabs
-  $( function() {
-    $( ".col-md-8.col.card" ).tabs();
-  });
-
-//Autocomplete majors
-  $( function() {
-    function log( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-      $( "#log" ).scrollTop( 0 );
+function openSemester(evt, semName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
     }
- 
-    $( "#majors" ).autocomplete({
-      source: "search.php",
-      minLength: 2,
-      select: function( event, ui ) {
-        log( "Selected: " + ui.item.value + " aka " + ui.item.id );
-      }
-    });
-  } );
+    
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    
+    document.getElementbyID(semName).style.display = "block";
+    evt.currentTarget.className += " active";
+}

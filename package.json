@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/McIntireEvan/4yearplan/issues"
   },
-  "homepage": "https://github.com/McIntireEvan/4yearplan#readme"
+  "homepage": "https://github.com/McIntireEvan/4yearplan#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
 }

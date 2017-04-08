@@ -2,43 +2,35 @@
     "requirements": [
         {
            "name": "MATH140",
-           "prereqs": [],
-           "credits": 4
+           "prereqs": []
         },
         {
            "name": "MATH141",
-           "prereqs": ["MATH140"],
-           "credits": 4
+           "prereqs": ["MATH140"]
         },
         {
            "name": "CMSC131",
-           "prereqs": [],
-           "credits": 4
+           "prereqs": []
         },
         {
            "name": "CMSC132",
-           "prereqs": ["CMSC131", "MATH140"],
-           "credits": 4
+           "prereqs": ["CMSC131", "MATH140"]
         },
         {
            "name": "CMSC216",
-           "prereqs": ["CMSC132", "MATH141"],
-           "credits": 4
+           "prereqs": ["CMSC132", "MATH141"]
         },
         {
            "name": "CMSC250",
-           "prereqs": ["CMSC132", "MATH141"],
-           "credits": 4
+           "prereqs": ["CMSC132", "MATH141"]
         },
         {
            "name": "CMSC330",
-           "prereqs": ["CMSC216", "CMSC250"],
-           "credits": 4
+           "prereqs": ["CMSC216", "CMSC250"]
         },
         {
            "name": "CMSC351",
-           "prereqs": ["CMSC216", "CMSC250"],
-           "credits": 4
+           "prereqs": ["CMSC216", "CMSC250"]
         }
     ]
 }

@@ -1,30 +1,65 @@
 {
     "requirements": [
-        "MATH140",
-        "CMSC131",
-        "MATH141",
-        "CMSC132",
-        "CMSC216",
-        "CMSC250",
-        "CMSC330",
-        "CMSC351",
         {
-            "courses":[
-                "MATHXXX",
-                "STATXXX"
-            ],
-            "prereqs": [
-                "MATH141"
-            ]
+           "name": "MATH140",
+           "prereqs": []
         },
-        "STAT4XX",
-        "CMSC4XX",
-        "CMSC4XX",
-        "CMSC4XX",
-        "CMSC4XX",
-        "CMSC4XX",
-        "CMSC4XX",
-        "CMSC4XX"
+        {
+           "name": "CMSC131",
+           "prereqs": []
+        },
+        {
+           "name": "MATH141",
+           "prereqs": ["MATH140"]
+        },
+        {
+           "name": "CMSC132",
+           "prereqs": ["CMSC131", "MATH140"]
+        },
+        {
+           "name": "CMSC216",
+           "prereqs": ["CMSC132", "MATH141"]
+        },
+        {
+           "name": "CMSC250",
+           "prereqs": ["CMSC132", "MATH141"]
+        },
+        {
+           "name": "CMSC330",
+           "prereqs": ["CMSC216", "CMSC250"]
+        },
+        {
+           "name": "CMSC351",
+           "prereqs": ["CMSC216", "CMSC250"]
+        },
+        {
+            "name": "CMSC4XX",
+            "prereqs": ["CMSC330", "CMSC351"]
+        },
+        {
+            "name": "CMSC4XX",
+            "prereqs": ["CMSC330", "CMSC351"]
+        },
+        {
+            "name": "CMSC4XX",
+            "prereqs": ["CMSC330", "CMSC351"]
+        },
+        {
+            "name": "CMSC4XX",
+            "prereqs": ["CMSC330", "CMSC351"]
+        },
+        {
+            "name": "CMSC4XX",
+            "prereqs": ["CMSC330", "CMSC351"]
+        },
+        {
+            "name": "CMSC4XX",
+            "prereqs": ["CMSC330", "CMSC351"]
+        },
+        {
+            "name": "CMSC4XX",
+            "prereqs": ["CMSC330", "CMSC351"]
+        }
     ],
     "supporting": [
         {

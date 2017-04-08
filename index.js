@@ -64,7 +64,7 @@ function loadToClasses(json, loadGeneric) {
     return ret;
 }
 
-var geneds = JSON.parse(fs.readFileSync('majors/gened.json', 'utf8'));
+var geneds = JSON.parse(fs.readFileSync('majors/GE.json', 'utf8'));
 var semesters = [
     { "courses":[], "credits": 0 },
     { "courses":[], "credits": 0 },

@@ -117,6 +117,7 @@ function addEarliest(course) {
     for(var i = 0; i < 8; i++) {
         if(canTakeInSemester(course, i) && checkAmounts(course, semesters[i])) {
             semesters[i].courses.push(course);
+            console.log("Added class " + course.ids[0]);
             semesters[i].credits += course.credits;
             return true;
         }
@@ -125,6 +126,9 @@ function addEarliest(course) {
 }
 
 function checkAmounts(course, semester) {
+    if(majors["CMSC"].rules[course.ids[0]] == {}) {
+        return true;
+    }
     var count = 0;
     for(var i = 0; i < semester.courses.length; i++) {
         if(course.compare(semester.courses[i])) {
@@ -137,20 +141,20 @@ function checkAmounts(course, semester) {
     return true;
 }
 
-function verifyGroups(classes) {
+function verifyGroups(ids) {
     var groupCount = {};
 
-    if(classes.length != major.choices.pick) {
+    if(ids.length != majors["CMSC"].choices.pick) {
         return false;
     }
-
-    for(var i = 0; i < classes.length; i++) {
-        for(var group in major.choices.groups) {
-            if(major.choices.groups[group].indexOf(classes[i]) != -1) {
-                if(groupCount[major.choices.groups.indexOf(major.choices.groups[group])] == undefined) {
-                    groupCount[major.choices.groups.indexOf(major.choices.groups[group])] = 1;
+    var groups = majors["CMSC"].choices.groups;
+    for(var i = 0; i < ids.length; i++) {
+        for(var group in groups) {
+            if(groups[group].indexOf(ids[i]) != -1) {
+                if(groupCount[groups.indexOf(groups[group])] == undefined) {
+                    groupCount[groups.indexOf(groups[group])] = 1;
                 } else {
-                    groupCount[major.choices.groups.indexOf(major.choices.groups[group])]++;
+                    groupCount[groups.indexOf(groups[group])]++;
                 }
             }
         }
@@ -160,24 +164,23 @@ function verifyGroups(classes) {
     for(var key in groupCount) {
         if(groupCount.hasOwnProperty(key)) {
             size++;
-            if(groupCount[key] > major.choices.max_per_group) {
+            if(groupCount[key] > majors["CMSC"].choices.max_per_group) {
                 return false;
             }
 
         }
     }
-    if(size < major.choices.min_groups) {
+    if(size < majors["CMSC"].choices.min_groups) {
         return false;
     }
-    if(size > major.choices.max_groups && major.choices.max_groups != -1) {
+    if(size > majors["CMSC"].choices.max_groups && majors["CMSC"].choices.max_groups != -1) {
         return false;
     }
     return true;
 }
 
-//TODO: This is broken. Rewrite to fit new gened format
 function checkRequirements(classes) {
-    /*var remaining = geneds.requirements;
+    var remaining = geneds.requirements;
 
     for(var i = 0; i < classes.length; i++) {
         for(var key in classes[i].gen_eds) {
@@ -186,8 +189,7 @@ function checkRequirements(classes) {
             }
         }
     }
-    return remaining.length == 0;*/
-    return false;
+    return remaining.length == 0;
 }
 
 function insertPlaceholders() {
@@ -201,7 +203,7 @@ function insertPlaceholders() {
 
 var courses = {};
 var majors = {
-    "CMSC": JSON.parse(fs.readFileSync('majors/CMSC.json', 'utf8'))
+    "CMSC": JSON.parse(fs.readFileSync('majors/MATH.json', 'utf8'))
 }
 
 var reqs = {};
@@ -220,4 +222,7 @@ for(var key in reqs["CMSC"]) {
     }
 }
 insertPlaceholders();
-console.log(semesters);
+
+console.log(verifyGroups(["CMSC411", "CMSC412", "CMSC420", "CMSC430", "CMSC433", "CMSC451", "CMSC460"]));
+
+console.log(JSON.stringify(semesters));

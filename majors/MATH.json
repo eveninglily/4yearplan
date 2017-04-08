@@ -1,0 +1,145 @@
+{
+    "requirements": [
+        {
+            "name": ["MATH140"],
+            "prereqs": [],
+            "credits": 4
+        },
+        {
+            "name": ["MATH141"],
+            "prereqs": ["MATH140"],
+            "credits": 4
+        },
+        {
+            "name": ["MATH240"],
+            "prereqs": ["MATH141"],
+            "credits": 4
+        },
+        {
+            "name": ["MATH241"],
+            "prereqs": ["MATH141"],
+            "credits": 4
+        },
+        {
+            "name": ["MATH246"],
+            "prereqs": ["MATH141"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH310"],
+            "prereqs": ["MATH141", "MATH241"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH410"],
+            "prereqs": ["MATH240", "MATH241","MATH310"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH411"],
+            "prereqs": ["MATH410"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH4XX", "STAT4XX", "AMSC4XX"],
+            "prereqs": ["MATH241"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH4XX", "STAT4XX", "AMSC4XX"],
+            "prereqs": ["MATH241"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH4XX", "STAT4XX", "AMSC4XX"],
+            "prereqs": ["MATH241"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH4XX", "STAT4XX", "AMSC4XX"],
+            "prereqs": ["MATH241"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH4XX", "STAT4XX", "AMSC4XX"],
+            "prereqs": ["MATH241"],
+            "credits": 3
+        },
+        {
+            "name": ["MATH4XX", "STAT4XX", "AMSC4XX"],
+            "prereqs": ["MATH241"],
+            "credits": 3
+        },
+        {
+            "name": ["CMSC106", "CMSC122", "CMSC131", "CMSC132", "ENAE202", "ENEE150", "PHYS165", "AOSC 258L"],
+            "prereqs": [],
+            "credits": 4
+        },
+        {
+            "name": ["Track 1"],
+            "prereqs":[],
+            "credits":4
+        },
+        {
+            "name": ["Track 2"],
+            "prereqs":["Track 1"],
+            "credits":4
+        },
+        {
+            "name": ["Track 3"],
+            "prereqs":["Track 2"],
+            "credits":4
+        }
+    ],
+    "choices": {
+        "pick": 3,
+        "min_groups": 1,
+        "max_groups": 1,
+        "max_per_group": 3,
+        "groups": [
+            [
+                "PHYS161",
+                "PHYS260/PHYS261",
+                "PHYS270/PHYS271"
+            ],
+            [
+                "PHYS171",
+                "PHYS272",
+                "PHYS273"
+            ],
+            [
+                "ENES102",
+                "PHYS161",
+                "ENES220"
+            ],
+            [
+                "CMSC132",
+                "CMSC216",
+                "CMSC250"
+            ],
+            [
+                "CHEM146/CHEM177",
+                "CHEM237",
+                "CHEM247"
+            ],
+            [
+                "CHEM131/CHEM132",
+                "CHEM231/CHEM232",
+                "CHEM241/CHEM242"
+            ],
+            [
+                "ECON200",
+                "ECON201",
+                "ECON3XX"
+            ],
+            [
+                "BMGT220",
+                "BMGT221",
+                "BMGT340"
+            ]
+        ]
+    },
+    "rules":{
+        "MATH4XX": 2
+    }
+}

@@ -2,72 +2,87 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
-
-        <title>umd4year</title>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Material Design Bootstrap</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="style1.css" rel="stylesheet">
-
-        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="js/ie-emulation-modes-warning.js"></script>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="stylesheet.css" rel="stylesheet">
     </head>
 
     <body>
-
-        <div class="site-wrapper">
-            <div class="site-wrapper-inner">
-                    <div class="masthead clearfix"> <!--Header element-->
-                        <div class="inner">
-                            <h3 class="masthead-brand">umd4year</h3>
-                        </div>
-                    </div>
-                    <div class = "container planner">
-                        <div class = "row">
-                            <div class ="col-md-3">
+        <div class = "container">
+            <h3>umd4year</h3>
+            <div class = "row">
+                <div class = "col-md-4">
+                    <div class = "card">
+                        <div class = "card-block">
+                            <h4 class = "card-title">
                                 Requirements
-                                <div class="ui-widget">
-                                    <label for="tags">Majors: </label>
-                                    <input id="tags">
-                                </div>
-                            </div>
-                            <div class = "col-md-6">
-                                Planner
-                            </div>
-                            <div class = "col-md-3">
-                                Courses
-                            </div>
+                            </h4>
+                            <p class = "card-text">General Education</p>
                         </div>
                     </div>
-
-                <!--Footer below-->
-                    <div class="mastfoot">
-                        <div class="inner">
-                           <p>A project for Bitcamp 2017 by Aidan McGovern, Evan McIntire, Jacob Cohen, and Justin Chen.</p>
-                        </div>
-                    </div>
-
-            </div>
-
+                </div><!--col-->
+                <div class = "col-md-8 col">
+                    <ul class = "nav nav-pills nav-stacked" role = "tablist">
+                        <li class = "dropdown">
+                            <a class = "nav-link active" data-toggle = "tab" href = "#panel1" role = "tab">Freshman</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class = "nav-link active" data-toggle = "tab" href = "#panel2" role = "tab">Sophomore</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class = "nav-link active" data-toggle = "tab" href = "#panel3" role = "tab">Junior</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class = "nav-link active" data-toggle = "tab" href = "#panel4" role = "tab">Senior</a>
+                        </li>
+                    </ul>
+                    <div class = "card tab-content">
+                        <!--Panel 1-->
+                        <div class = "tab-pane fade in show active" id = "panel1" role = "tabpanel">
+                            <br>
+                            <p>
+                                Year 1 Stuff here.
+                            </p>
+                        </div> <!--tab pane-->
+                        <!--Panel 2-->
+                        <div class = "tab-pane fade in show active" id = "panel2" role = "tabpanel">
+                            <br>
+                            <p>
+                                Year 2 Stuff here.
+                            </p>
+                        </div> <!--tab pane-->
+                        <!--Panel 3-->
+                        <div class = "tab-pane fade in show active" id = "panel3" role = "tabpanel">
+                            <br>
+                            <p>
+                                Year 3 Stuff here.
+                            </p>
+                        </div> <!--tab pane-->
+                        <!--Panel 4-->
+                        <div class = "tab-pane fade in show active" id = "panel4" role = "tabpanel">
+                            <br>
+                            <p>
+                                Year 4 Stuff here.
+                            </p>
+                        </div> <!--tab pane-->
+                    </div> <!--card-->
+                </div><!--col-->
+            </div> <!-- row -->
         </div>
+        <footer class="footer">
+            <div class = "container">
+                <br>
+                <p class = "text-muted">A project for Bitcamp 2017 by Aidan McGovern, Evan McIntire, Jacob Cohen, and Justin Chen.</p>
+            </div>
+        </footer>
         
 
         <!-- Bootstrap core JavaScript

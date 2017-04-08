@@ -41,13 +41,12 @@
             "credits": 3
         },
         {
-            "name": "MATHXXX",
-            "disp": "STAT4XX",
+            "name": "STAT4XX",
             "prereqs": ["MATH141"],
             "credits": 3
         },
         {
-            "name": "MATHXXX",
+            "name": "MATHXXX/STATXXX",
             "prereqs": ["MATH141"],
             "credits": 3
         },

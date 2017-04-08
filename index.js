@@ -3,29 +3,21 @@ var request = require('request');
 
 var major = JSON.parse(fs.readFileSync('majors/compsci.json', 'utf8'));
 var semesters = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    []
+    { "courses":[], "credits": 0 },
+    { "courses":[], "credits": 0 },
+    { "courses":[], "credits": 0 },
+    { "courses":[], "credits": 0 },
+    { "courses":[], "credits": 0 },
+    { "courses":[], "credits": 0 },
+    { "courses":[], "credits": 0 },
+    { "courses":[], "credits": 0 }
 ];
 
 var requirements = major.requirements;
 
-for(var key in requirements) {
-    if(requirements.hasOwnProperty(key)) {
-        //console.log(requirements[key]);
-    }
-}
-
-function queryClass(name) {
+function queryClass(name, callback) {
     request('http://api.umd.io/v0/courses/' + name, function(error, response, body) {
-        console.log('error: ' + error);
-        console.log('statusCode: ', response && response.statusCode);
-        console.log('body: ' + JSON.stringify(JSON.parse(body), null, 2));
+        callback(body);
     });
 }
 
@@ -53,7 +45,7 @@ function getFullPrereqs(name) {
 function canTakeInSemester(name, semester) {
     var classes = [];
     for(var i = 0; i < semester; i++) {
-        classes = classes.concat(semesters[i]);
+        classes = classes.concat(semesters[i].courses);
     }
 
     var reqs = getFullPrereqs(name);
@@ -68,7 +60,8 @@ function canTakeInSemester(name, semester) {
 function addEarliest(name) {
     for(var i = 0; i < 8; i++) {
         if(canTakeInSemester(name, i) && checkAmounts(name, semesters[i])) {
-            semesters[i].push(name);
+            semesters[i].courses.push(name);
+            semesters[i].credits += getCredits(name);
             return true;
         }
     }
@@ -77,8 +70,8 @@ function addEarliest(name) {
 
 function checkAmounts(name, semester) {
     var count = 0;
-    for(var i = 0; i < semester.length; i++) {
-        if(semester[i] == name) {
+    for(var i = 0; i < semester.courses.length; i++) {
+        if(semester.courses[i] == name) {
             count++;
             if(count >= major.rules[name]) {
                 return false;
@@ -88,10 +81,20 @@ function checkAmounts(name, semester) {
     return true;
 }
 
+function getCredits(name) {
+    for(var key in requirements) {
+        if(requirements.hasOwnProperty(key)) {
+            if(requirements[key].name == name) {
+                return requirements[key].credits;
+            }
+        }
+    }
+    return 0;
+}
+
 for(var key in requirements) {
     if(requirements.hasOwnProperty(key)) {
-        //console.log(getFullPrereqs(requirements[key].name));
-        console.log(addEarliest(requirements[key].name));
+        addEarliest(requirements[key].name);
     }
 }
 

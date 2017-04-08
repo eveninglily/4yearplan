@@ -6,6 +6,7 @@ jQuery(".btn.btn-lg.btn-default").click(function() {
 	jQuery( "#speed" ).selectmenu();
 	  } );
   */
+  
     jQuery( function() {
     var availableMajors = [
       "Computer Science (CMSC)",
@@ -22,7 +23,6 @@ jQuery(".btn.btn-lg.btn-default").click(function() {
   };
   
   window.onload = function() {
-  	console.log("Huh?");
   	prepareEventHandlers;
   };
   */

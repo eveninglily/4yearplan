@@ -27,3 +27,14 @@ col {
 tab {
     width: 100%;
 }
+
+.modal-class-choice {
+    transition: all .1s;
+}
+
+.modal-class-choice:hover {
+    background: #c62828;
+    color:white;
+    transition: all .1s;
+    cursor: pointer;
+}

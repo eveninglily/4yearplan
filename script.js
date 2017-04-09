@@ -20,7 +20,7 @@ function addCourse(course) {
             );
         }
     } else {
-        chips.append($('<a>').addClass("waves-effect waves-light btn red").html("Pick Class"));
+        chips.append($('<a>').addClass("waves-effect waves-light btn red").attr('href', '#class-picker').html("Pick Class"));
     }
 
     var course = $('<li>').append(
@@ -55,4 +55,8 @@ $(document).ready(function(){
     addCourse(testCourse2);
     $('.chips-initial').material_chip('data');
     $('.tooltipped').tooltip({delay: 50});
+    $('.modal').modal();
+
+    fufillMajor("CMSC");
+    console.log(semesters);
 });

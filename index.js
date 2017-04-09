@@ -1,10 +1,8 @@
 function getJSON(file) {
-    /*$.getJSON(file, function(data) {
+    $.getJSON(file, function(data) {
         console.log(data);
-    });*/
+    });
 }
-
-getJSON('https://evanmcintire.com/gradu8/majors/CMSC.json');
 
 /* Courses */
 class Course {
@@ -190,27 +188,37 @@ function insertPlaceholders() {
 
 var courses = {};
 var majors = {
-    //"CMSC": getJSON("https://evanmcintire.com/gradu8/majors/CMSC.json")
+    "CMSC": getJSON("https://evanmcintire.com/gradu8/majors/CMSC.json"),
+    "MATH": getJSON("https://evanmcintire.com/gradu8/majors/MATH.json")
 }
 
 var reqs = {};
-
-/**for(var key in majors["CMSC"].requirements) {
+console.log(majors["CMSC"]);
+for(var key in majors["CMSC"].requirements) {
     if(majors["CMSC"].requirements.hasOwnProperty(key)) {
         if(!majors["CMSC"].requirements[key].generic) {
             courses[majors["CMSC"].requirements[key].name] = (new Course(majors["CMSC"].requirements[key]));
         }
     }
 }
-reqs["CMSC"] = loadToClasses(majors["CMSC"].requirements, true);
-for(var key in reqs["CMSC"]) {
-    if(reqs["CMSC"].hasOwnProperty(key)) {
-        addEarliest(reqs["CMSC"][key]);
+
+for(var key in majors["MATH"].requirements) {
+    if(majors["MATH"].requirements.hasOwnProperty(key)) {
+        if(!majors["MATH"].requirements[key].generic) {
+            courses[majors["MATH"].requirements[key].name] = (new Course(majors["MATH"].requirements[key]));
+        }
     }
 }
-insertPlaceholders();
 
-console.log(verifyGroups(["CMSC411", "CMSC412", "CMSC420", "CMSC430", "CMSC433", "CMSC451", "CMSC460"]));
+reqs["CMSC"] = loadToClasses(majors["CMSC"].requirements, true);
+reqs["MATH"] = loadToClasses(majors["MATH"].requirements, true);
 
-console.log(JSON.stringify(semesters));
-*/
+
+function fufillMajor(major) {
+    for(var key in reqs[major]) {
+        if(reqs[major].hasOwnProperty(key)) {
+            addEarliest(reqs[major][key]);
+        }
+    }
+    insertPlaceholders();
+}

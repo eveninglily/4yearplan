@@ -5,6 +5,12 @@ body {
     flex-direction: column;
 }
 
+container{
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
 main {
     flex: 1 0 auto;
 }
@@ -13,7 +19,20 @@ col{
     width: 100%;
 }
 
+<<<<<<< HEAD
 .chips-holder {
     display: inline-block;
     float: right;
+=======
+tab{
+    width: 100%;
+}
+
+@media only screen and (min-width: 601px) .container{
+    width 85%;
+}
+
+@media only screen and (min-width: 993px) .container {
+    width: 70%;
+>>>>>>> 00a368794d953c2286e7cb33a6e675ad27a6c4ba
 }

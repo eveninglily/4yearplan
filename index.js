@@ -1,6 +1,7 @@
-function getJSON(file) {
+function getJSON(file, callback) {
     $.getJSON(file, function(data) {
         console.log(data);
+        callback(data);
     });
 }
 
@@ -49,7 +50,7 @@ function loadToClasses(json, loadGeneric) {
     return ret;
 }
 
-var geneds = getJSON("https://evanmcintire.com/gradu8/majors/GE.json");
+//var geneds = getJSON("https://evanmcintire.com/gradu8/majors/GE.json");
 var semesters = [
     { "courses":[], "credits": 0 },
     { "courses":[], "credits": 0 },
@@ -100,6 +101,8 @@ function getIds(classes) {
 //returns false if it couldnt
 function addEarliest(course) {
     for(var i = 0; i < 8; i++) {
+        console.log("1: " +  canTakeInSemester(course, i));
+        console.log("2: " +  checkAmounts(course, semesters[i]));
         if(canTakeInSemester(course, i) && checkAmounts(course, semesters[i])) {
             semesters[i].courses.push(course);
             console.log("Added class " + course.ids[0]);
@@ -188,13 +191,18 @@ function insertPlaceholders() {
 
 var courses = {};
 var majors = {
-    "CMSC": getJSON("https://evanmcintire.com/gradu8/majors/CMSC.json"),
-    "MATH": getJSON("https://evanmcintire.com/gradu8/majors/MATH.json")
+    "CMSC": JSON.parse('{ "requirements": [ { "name": ["MATH140"], "prereqs": [], "credits": 4, "generic": false }, { "name": ["CMSC131"], "prereqs": [], "credits": 4, "generic": false }, { "name": ["MATH141"], "prereqs": ["MATH140"], "credits": 4, "generic": false }, { "name": ["CMSC132"], "prereqs": ["CMSC131", "MATH140"], "credits": 4, "generic": false }, { "name": ["CMSC216"], "prereqs": ["CMSC132", "MATH141"], "credits": 4, "generic": false }, { "name": ["CMSC250"], "prereqs": ["CMSC132", "MATH141"], "credits": 4, "generic": false }, { "name": ["CMSC330"], "prereqs": ["CMSC216", "CMSC250"], "credits": 3, "generic": false }, { "name": ["CMSC351"], "prereqs": ["CMSC216", "CMSC250"], "credits": 3, "generic": false }, { "name": ["STAT4XX"], "prereqs": ["MATH141"], "credits": 3, "generic": true }, { "name": ["STAT4XX", "MATHXXX"], "prereqs": ["MATH141"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true } ], "choices": { "pick": 7, "min_groups": 3, "max_groups": -1, "max_per_group": 4, "groups": [ [ "CMSC411", "CMSC412", "CMSC414", "CMSC417" ], [ "CMSC420", "CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC426", "CMSC427" ], [ "CMSC430", "CMSC433", "CMSC434", "CMSC435", "CMSC436" ], [ "CMSC451", "CMSC452", "CMSC456" ], [ "CMSC460", "CMSC466" ] ] }, "rules": { "CMSC4XX": 2, "STAT4XX": 1 }}')
+    /*getJSON("https://evanmcintire.com/gradu8/majors/CMSC.json", function(data) {
+        fufillMajor("CMSC");
+        console.log(semesters);
+    })*///,
+    //"MATH": getJSON("https://evanmcintire.com/gradu8/majors/MATH.json")
 }
 
 var reqs = {};
-console.log(majors["CMSC"]);
+//console.log(majors["CMSC"]);
 for(var key in majors["CMSC"].requirements) {
+    console.log(key);
     if(majors["CMSC"].requirements.hasOwnProperty(key)) {
         if(!majors["CMSC"].requirements[key].generic) {
             courses[majors["CMSC"].requirements[key].name] = (new Course(majors["CMSC"].requirements[key]));
@@ -202,23 +210,29 @@ for(var key in majors["CMSC"].requirements) {
     }
 }
 
-for(var key in majors["MATH"].requirements) {
+/*for(var key in majors["MATH"].requirements) {
     if(majors["MATH"].requirements.hasOwnProperty(key)) {
         if(!majors["MATH"].requirements[key].generic) {
             courses[majors["MATH"].requirements[key].name] = (new Course(majors["MATH"].requirements[key]));
         }
     }
-}
+}*/
 
 reqs["CMSC"] = loadToClasses(majors["CMSC"].requirements, true);
-reqs["MATH"] = loadToClasses(majors["MATH"].requirements, true);
+//reqs["MATH"] = loadToClasses(majors["MATH"].requirements, true);
 
 
 function fufillMajor(major) {
+    console.log(major);
     for(var key in reqs[major]) {
+        console.log(key);
         if(reqs[major].hasOwnProperty(key)) {
             addEarliest(reqs[major][key]);
         }
     }
     insertPlaceholders();
 }
+
+fufillMajor("CMSC");
+
+console.log(semesters);

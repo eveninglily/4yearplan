@@ -56,7 +56,4 @@ $(document).ready(function(){
     $('.chips-initial').material_chip('data');
     $('.tooltipped').tooltip({delay: 50});
     $('.modal').modal();
-
-    fufillMajor("CMSC");
-    console.log(semesters);
 });

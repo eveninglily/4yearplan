@@ -212,6 +212,20 @@ getCourseData("CMSC420", function(data) {
     console.log(data);
 })
 
+function addCourse(course, semNum){
+    var dispName = course.ids.join("/");
+    var course = $('<li>').append(
+        $('<div>').addClass('collapsible-header')
+                  .html(dispName).append(chips)
+    ).append(
+        $('<div>').addClass('collapsible-body')
+                  .html("Description")
+    ).addClass('course').appendTo("#year1-courses");
+
+    $('.collapsible').collapsible();
+}
+
+/*
 function addCourse(course) {
     var dispName = course.ids.join("/");
     var fufills = ["Major", "AR", "MA"]
@@ -241,6 +255,7 @@ function addCourse(course) {
 
     $('.collapsible').collapsible();
 }
+*/
 
 var testCourse = new Course({
     "name": ["CMSC4XX"],
@@ -256,6 +271,16 @@ var testCourse2 = new Course({
     "generic": false
 });
 
+function processSemesters(){
+    for (var i = 0; i < semesters.length; i++){
+        for (var j = 0; j < semester[i].courses.length; j++){
+            addCourse(semester[i].courses[j].ids[0], i);
+        }
+    }
+}
+
+
+
 $(document).ready(function(){
     $('ul.tabs').tabs();
     $('.collapsible').collapsible();
@@ -266,7 +291,6 @@ $(document).ready(function(){
     $('.modal').modal();
 
     generateModalContent(["CMSC4XX"]);
-
     $('#gened-picker input').on('change', function() {
         generateGenEdModalContent();
     });

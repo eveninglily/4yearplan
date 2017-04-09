@@ -62,6 +62,7 @@ var semesters = [
     { "courses":[], "credits": 0 }
 ];
 
+
 function queryClass(name, callback) {
     request('http://api.umd.io/v0/courses/' + name, function(error, response, body) {
         callback(body);

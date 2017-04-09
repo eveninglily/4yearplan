@@ -27,3 +27,11 @@ col {
 tab {
     width: 100%;
 }
+
+.course{
+    opacity: 0;
+}
+
+.col .collapsible{
+    border: none;
+}

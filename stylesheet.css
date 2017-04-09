@@ -38,3 +38,8 @@ tab {
     transition: all .1s;
     cursor: pointer;
 }
+
+#course-filters li {
+    display: inline-block;
+    margin-left: 1em;
+}

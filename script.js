@@ -1,7 +1,19 @@
 var tooltipMap = {
     "Major": "Major Requirement",
     "AR": "Analytical Reasoning",
-    "MA": "Math"
+    "FSAR": "Analytical Reasoning",
+    "FSMA": "Math",
+    "FSAW":"Academic Writing",
+    "FSPW": "Professional Writing",
+    "FSOC": "Oral Communication",
+    "DSNL": "Natural Lab",
+    "DSNS": "Natural Science",
+    "DSHS": "History",
+    "DSHU": "Humanities",
+    "DSSP": "Scholarship in Practice",
+    "SCIS": "I-Series",
+    "DVUP": "Understanding Plural Societies",
+    "DVCC": "Cultural Competency"
 }
 
 var courseMap = {
@@ -30,6 +42,106 @@ var courseMap = {
     ]
 }
 
+var geneds2 = {
+    "AW": [
+        "ENGL101"
+    ],
+    "AR": [
+        "BIOM301",
+        "BGMT230",
+        "CCJS200",
+        "EDHD306",
+        "GEOG306",
+        "MATH140",
+        "PHIL170"
+    ],
+    "MA": [
+        "MATH107",
+        "MATH113",
+        "MATH115",
+        "MATH120",
+        "MATH140",
+        "STAT100"
+    ],
+    "OC": [
+        "COMM107",
+        "INAG100",
+        "JOUR130",
+        "THET285",
+        "HLTH420"
+    ],
+    "PW": [
+        "ENGL390",
+        "ENGL391",
+        "ENGL392",
+        "ENGL393",
+        "ENGL394",
+    ],
+    "HS": [
+        "AASP100",
+        "AMST202",
+        "ANTH240",
+        "AREC240",
+        "CCJS100",
+        "ECON111"
+    ],
+    "HU": [
+        "CLAS170",
+        "CMLT235",
+        "ENEE200",
+        "ENGL211",
+        "HIST319K"
+    ],
+    "NS": [
+        "ANSC227",
+        "ASTR100",
+        "BSCI160",
+        "GEOG140"
+    ],
+    "NL": [
+        "ANTH222",
+        "BSCI170",
+        "CHEM131",
+        "PHYS115",
+        "PLSC101"
+    ],
+    "SP": [
+        "ENGL293",
+        "ENSP400",
+        "FIRE257",
+        "GEMS202",
+        "HDCC208B",
+        "HIST408P"
+    ],
+    "CC": [
+        "AAST498M",
+        "BSST335",
+        "COMM382",
+        "EDSP220",
+        "ENES472"
+    ],
+    "UP": [
+        "AASP100",
+        "AAST200",
+        "AMST101",
+        "ANTH222",
+        "ARTH200",
+        "ENGL134",
+        "HIST111",
+        "HIST289Y"
+    ],
+    "IS": [
+        "AASP187",
+        "AMST260",
+        "ANSC227",
+        "AOSC123",
+        "ARCH270",
+        "BSCI283",
+        "CCJS225",
+        "CPSS225"
+    ]
+}
+
 function generateModalContent(courseIds) {
     console.log(courseIds);
     for(var i = 0; i < courseIds.length; i++) {
@@ -48,6 +160,44 @@ function generateModalContent(courseIds) {
                                 .appendTo('#class-pick-list');
                 })
 
+        }
+    }
+}
+
+function generateGenEdModalContent() {
+    $('#gened-pick-list').empty();
+    for(var key in geneds2) {
+        if(geneds2.hasOwnProperty(key)) {
+            if($('#' + key.toLowerCase() + '-check').is(":checked")) {
+                for(var i = 0; i < geneds2[key].length; i++) {
+                    getCourseData(geneds2[key][i], function(data) {
+                    var elem = $('<div>');
+                    var holder = $('<div>').addClass('chips-holder');
+                    for(var i = 0; i < data.gen_ed.length; i++) {
+                        holder.append(
+                        $("<div>")
+                            .addClass('chip tooltipped')
+                            .attr("data-position", "bottom")
+                            .attr("data-delay", "30")
+                            .attr("data-tooltip", tooltipMap[data.gen_ed[i]])
+                            .html(data.gen_ed[i])
+                        );
+
+                    }
+
+                    elem.append(
+                        $('<h6>').html(data.course_id + " - " + data.name).append(holder)
+                    ).append(
+                        $('<p>').html(data.description)
+                    )
+                    var newElement = $('<li>')
+                                    .addClass('collection-item modal-class-choice')
+                                    .html(elem)
+                                    .appendTo('#gened-pick-list');
+                            $('.tooltipped').tooltip({delay: 50});
+                    })
+                }
+            }
         }
     }
 }
@@ -78,7 +228,7 @@ function addCourse(course) {
             );
         }
     } else {
-        chips.append($('<a>').addClass("waves-effect waves-light btn red").attr('href', '#class-picker').html("Pick Class"));
+        chips.append($('<a>').addClass("waves-effect waves-light btn red").attr('href', '#gened-picker').html("Pick Class"));
     }
 
     var course = $('<li>').append(
@@ -116,4 +266,8 @@ $(document).ready(function(){
     $('.modal').modal();
 
     generateModalContent(["CMSC4XX"]);
+
+    $('#gened-picker input').on('change', function() {
+        generateGenEdModalContent();
+    });
 });

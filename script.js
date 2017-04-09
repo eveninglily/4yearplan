@@ -12,7 +12,7 @@ function addCourse(course) {
         for(var i = 0; i < fufills.length; i++) {
             chips.append(
             $("<div>")
-                .addClass('chip tooltipped grey')
+                .addClass('chip tooltipped')
                 .attr("data-position", "bottom")
                 .attr("data-delay", "30")
                 .attr("data-tooltip", tooltipMap[fufills[i]])
@@ -24,7 +24,7 @@ function addCourse(course) {
     }
 
     var course = $('<li>').append(
-        $('<div>').addClass('collapsible-header grey lighten-3')
+        $('<div>').addClass('collapsible-header')
                   .html(dispName).append(chips)
     ).append(
         $('<div>').addClass('collapsible-body')

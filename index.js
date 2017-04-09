@@ -101,11 +101,8 @@ function getIds(classes) {
 //returns false if it couldnt
 function addEarliest(course) {
     for(var i = 0; i < 8; i++) {
-        console.log("1: " +  canTakeInSemester(course, i));
-        console.log("2: " +  checkAmounts(course, semesters[i]));
         if(canTakeInSemester(course, i) && checkAmounts(course, semesters[i])) {
             semesters[i].courses.push(course);
-            console.log("Added class " + course.ids[0]);
             semesters[i].credits += course.credits;
             return true;
         }
@@ -202,7 +199,6 @@ var majors = {
 var reqs = {};
 //console.log(majors["CMSC"]);
 for(var key in majors["CMSC"].requirements) {
-    console.log(key);
     if(majors["CMSC"].requirements.hasOwnProperty(key)) {
         if(!majors["CMSC"].requirements[key].generic) {
             courses[majors["CMSC"].requirements[key].name] = (new Course(majors["CMSC"].requirements[key]));
@@ -223,9 +219,7 @@ reqs["CMSC"] = loadToClasses(majors["CMSC"].requirements, true);
 
 
 function fufillMajor(major) {
-    console.log(major);
     for(var key in reqs[major]) {
-        console.log(key);
         if(reqs[major].hasOwnProperty(key)) {
             addEarliest(reqs[major][key]);
         }

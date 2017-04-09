@@ -4,6 +4,64 @@ var tooltipMap = {
     "MA": "Math"
 }
 
+var courseMap = {
+    "CMSC4XX": [
+        "CMSC411",
+        "CMSC412",
+        "CMSC414",
+        "CMSC417",
+        "CMSC420",
+        "CMSC421",
+        "CMSC422",
+        "CMSC423",
+        "CMSC424",
+        "CMSC426",
+        "CMSC427",
+        "CMSC430",
+        "CMSC433",
+        "CMSC434",
+        "CMSC435",
+        "CMSC436",
+        "CMSC451",
+        "CMSC452",
+        "CMSC456",
+        "CMSC460",
+        "CMSC466"
+    ]
+}
+
+function generateModalContent(courseIds) {
+    console.log(courseIds);
+    for(var i = 0; i < courseIds.length; i++) {
+        console.log(i);
+        for(var j = 0; j < courseMap[courseIds[i]].length; j++) {
+            getCourseData(courseMap[courseIds[i]][j], function(data) {
+                var elem = $('<div>');
+                elem.append(
+                    $('<h6>').html(data.course_id + " - " + data.name)
+                ).append(
+                    $('<p>').html(data.description)
+                )
+                var newElement = $('<li>')
+                                .addClass('collection-item modal-class-choice')
+                                .html(elem)
+                                .appendTo('#class-pick-list');
+                })
+
+        }
+    }
+}
+
+function getCourseData(id, callback) {
+    $.getJSON('http://api.umd.io/v0/courses/' + id, function(data) {
+        callback(data);
+    })
+}
+
+getCourseData("CMSC420", function(data) {
+    console.log(data);
+})
+
 function addCourse(course) {
     var dispName = course.ids.join("/");
     var fufills = ["Major", "AR", "MA"]
@@ -57,4 +115,6 @@ $(document).ready(function(){
     $('.chips-initial').material_chip('data');
     $('.tooltipped').tooltip({delay: 50});
     $('.modal').modal();
+
+    generateModalContent(["CMSC4XX"]);
 });

@@ -2,6 +2,7 @@ var tooltipMap = {
     "Major": "Major Requirement",
     "AR": "Analytical Reasoning",
     "FSAR": "Analytical Reasoning",
+    "MA": "Math",
     "FSMA": "Math",
     "FSAW":"Academic Writing",
     "FSPW": "Professional Writing",
@@ -28,15 +29,12 @@ var courseMap = {
         "CMSC423",
         "CMSC424",
         "CMSC426",
-        "CMSC427",
         "CMSC430",
         "CMSC433",
         "CMSC434",
         "CMSC435",
         "CMSC436",
         "CMSC451",
-        "CMSC452",
-        "CMSC456",
         "CMSC460",
         "CMSC466"
     ]
@@ -208,27 +206,10 @@ function getCourseData(id, callback) {
     })
 }
 
-getCourseData("CMSC420", function(data) {
-    console.log(data);
-})
-
-function addCourse(course, semNum){
+function addCourse(course, semNum) {
+    console.log(course)
     var dispName = course.ids.join("/");
-    var course = $('<li>').append(
-        $('<div>').addClass('collapsible-header')
-                  .html(dispName).append(chips)
-    ).append(
-        $('<div>').addClass('collapsible-body')
-                  .html("Description")
-    ).addClass('course').appendTo("#year1-courses");
-
-    $('.collapsible').collapsible();
-}
-
-/*
-function addCourse(course) {
-    var dispName = course.ids.join("/");
-    var fufills = ["Major", "AR", "MA"]
+    var fufills = course.fulfills;
     var chips = $('<div>').addClass('chips-holder');
     if(!course.generic) {
         for(var i = 0; i < fufills.length; i++) {
@@ -241,40 +222,35 @@ function addCourse(course) {
                 .html(fufills[i])
             );
         }
+        getCourseData(course.ids[0], function(data) {
+            var course = $('<li>').append(
+            $('<div>').addClass('collapsible-header')
+                      .append($('<span>').html(data.course_id + " - " + data.name)).append(chips)
+            ).append(
+                $('<div>').addClass('collapsible-body')
+                        .append($('<p>').html(data.description))
+            ).addClass('course').prependTo("#sem" + semNum);
+
+            $('.collapsible').collapsible();
+            $('.tooltipped').tooltip({delay: 50});
+        });
+        return;
     } else {
         chips.append($('<a>').addClass("waves-effect waves-light btn red").attr('href', '#gened-picker').html("Pick Class"));
     }
-
     var course = $('<li>').append(
         $('<div>').addClass('collapsible-header')
                   .html(dispName).append(chips)
-    ).append(
-        $('<div>').addClass('collapsible-body')
-                  .html("Description")
-    ).addClass('course').appendTo("#year1-courses");
+    ).addClass('course').appendTo("#sem" + semNum);
 
     $('.collapsible').collapsible();
+    $('.tooltipped').tooltip({delay: 50});
 }
-*/
-
-var testCourse = new Course({
-    "name": ["CMSC4XX"],
-    "prereqs": [],
-    "credits": 3,
-    "generic": true
-});
-
-var testCourse2 = new Course({
-    "name": ["MATH141"],
-    "prereqs": [],
-    "credits": 4,
-    "generic": false
-});
 
 function processSemesters(){
     for (var i = 0; i < semesters.length; i++){
-        for (var j = 0; j < semester[i].courses.length; j++){
-            addCourse(semester[i].courses[j].ids[0], i);
+        for (var j = 0; j < semesters[i].courses.length; j++){
+            addCourse(semesters[i].courses[j], i);
         }
     }
 }
@@ -284,14 +260,13 @@ function processSemesters(){
 $(document).ready(function(){
     $('ul.tabs').tabs();
     $('.collapsible').collapsible();
-    addCourse(testCourse);
-    addCourse(testCourse2);
     $('.chips-initial').material_chip('data');
     $('.tooltipped').tooltip({delay: 50});
     $('.modal').modal();
 
-    generateModalContent(["CMSC4XX"]);
+    //generateModalContent(["CMSC4XX"]);
     $('#gened-picker input').on('change', function() {
         generateGenEdModalContent();
     });
+    processSemesters();
 });

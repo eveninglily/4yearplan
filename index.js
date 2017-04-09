@@ -12,6 +12,7 @@ class Course {
         this.prereqs = json.prereqs;
         this.credits = json.credits;
         this.generic = json.generic;
+        this.fulfills = json.fulfills;
     }
 
     compare(other) {
@@ -181,7 +182,7 @@ function checkRequirements(classes) {
 function insertPlaceholders() {
     for(var i = 0; i < 8; i++) {
         while(semesters[i].credits < 14) {
-            semesters[i].courses.push(new Course({ids:"Placeholder", credits:3, prereqs:[], generic:true}));
+            semesters[i].courses.push(new Course({name:["Course"], credits:3, prereqs:[], generic:true}));
             semesters[i].credits += 3;
         }
     }
@@ -189,7 +190,7 @@ function insertPlaceholders() {
 
 var courses = {};
 var majors = {
-    "CMSC": JSON.parse('{ "requirements": [ { "name": ["MATH140"], "prereqs": [], "credits": 4, "generic": false }, { "name": ["CMSC131"], "prereqs": [], "credits": 4, "generic": false }, { "name": ["MATH141"], "prereqs": ["MATH140"], "credits": 4, "generic": false }, { "name": ["CMSC132"], "prereqs": ["CMSC131", "MATH140"], "credits": 4, "generic": false }, { "name": ["CMSC216"], "prereqs": ["CMSC132", "MATH141"], "credits": 4, "generic": false }, { "name": ["CMSC250"], "prereqs": ["CMSC132", "MATH141"], "credits": 4, "generic": false }, { "name": ["CMSC330"], "prereqs": ["CMSC216", "CMSC250"], "credits": 3, "generic": false }, { "name": ["CMSC351"], "prereqs": ["CMSC216", "CMSC250"], "credits": 3, "generic": false }, { "name": ["STAT4XX"], "prereqs": ["MATH141"], "credits": 3, "generic": true }, { "name": ["STAT4XX", "MATHXXX"], "prereqs": ["MATH141"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true } ], "choices": { "pick": 7, "min_groups": 3, "max_groups": -1, "max_per_group": 4, "groups": [ [ "CMSC411", "CMSC412", "CMSC414", "CMSC417" ], [ "CMSC420", "CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC426", "CMSC427" ], [ "CMSC430", "CMSC433", "CMSC434", "CMSC435", "CMSC436" ], [ "CMSC451", "CMSC452", "CMSC456" ], [ "CMSC460", "CMSC466" ] ] }, "rules": { "CMSC4XX": 2, "STAT4XX": 1 }}')
+    "CMSC": JSON.parse('{ "requirements": [ { "name": ["MATH140"], "prereqs": [], "credits": 4, "generic": false, "fulfills": ["Major", "FSAR", "FSMA"] }, { "name": ["CMSC131"], "prereqs": [], "credits": 4, "generic": false, "fulfills": ["Major"] }, { "name": ["MATH141"], "prereqs": ["MATH140"], "credits": 4, "generic": false, "fulfills": ["Major"] }, { "name": ["CMSC132"], "prereqs": ["CMSC131", "MATH140"], "credits": 4, "generic": false, "fulfills": ["Major"] }, { "name": ["CMSC216"], "prereqs": ["CMSC132", "MATH141"], "credits": 4, "generic": false, "fulfills": ["Major"] }, { "name": ["CMSC250"], "prereqs": ["CMSC132", "MATH141"], "credits": 4, "generic": false, "fulfills": ["Major"] }, { "name": ["CMSC330"], "prereqs": ["CMSC216", "CMSC250"], "credits": 3, "generic": false, "fulfills": ["Major"] }, { "name": ["CMSC351"], "prereqs": ["CMSC216", "CMSC250"], "credits": 3, "generic": false, "fulfills": ["Major"] }, { "name": ["STAT4XX"], "prereqs": ["MATH141"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["STAT4XX", "MATHXXX"], "prereqs": ["MATH141"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true, "fulfills": ["Major"] }, { "name": ["CMSC4XX"], "prereqs": ["CMSC330", "CMSC351"], "credits": 3, "generic": true, "fulfills": ["Major"] } ], "choices": { "pick": 7, "min_groups": 3, "max_groups": -1, "max_per_group": 4, "groups": [ [ "CMSC411", "CMSC412", "CMSC414", "CMSC417" ], [ "CMSC420", "CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC426", "CMSC427" ], [ "CMSC430", "CMSC433", "CMSC434", "CMSC435", "CMSC436" ], [ "CMSC451", "CMSC452", "CMSC456" ], [ "CMSC460", "CMSC466" ] ] }, "rules": { "CMSC4XX": 2, "STAT4XX": 1 }}')
     /*getJSON("https://evanmcintire.com/gradu8/majors/CMSC.json", function(data) {
         fufillMajor("CMSC");
         console.log(semesters);

@@ -4,103 +4,120 @@
             "name": ["MATH140"],
             "prereqs": [],
             "credits": 4,
-            "generic": false
+            "generic": false,
+            "fulfills": ["Major", "FSAR", "FSMA"]
         },
         {
             "name": ["CMSC131"],
             "prereqs": [],
             "credits": 4,
-            "generic": false
+            "generic": false,
+            "fulfills": ["Major"]
         },
         {
             "name": ["MATH141"],
             "prereqs": ["MATH140"],
             "credits": 4,
             "generic": false
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC132"],
             "prereqs": ["CMSC131", "MATH140"],
             "credits": 4,
             "generic": false
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC216"],
             "prereqs": ["CMSC132", "MATH141"],
             "credits": 4,
             "generic": false
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC250"],
             "prereqs": ["CMSC132", "MATH141"],
             "credits": 4,
             "generic": false
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC330"],
             "prereqs": ["CMSC216", "CMSC250"],
             "credits": 3,
             "generic": false
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC351"],
             "prereqs": ["CMSC216", "CMSC250"],
             "credits": 3,
             "generic": false
+            "fulfills": ["Major"]
         },
         {
             "name": ["STAT4XX"],
             "prereqs": ["MATH141"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["STAT4XX", "MATHXXX"],
             "prereqs": ["MATH141"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         },
         {
             "name": ["CMSC4XX"],
             "prereqs": ["CMSC330", "CMSC351"],
             "credits": 3,
             "generic": true
+            "fulfills": ["Major"]
         }
     ],
     "choices": {

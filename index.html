@@ -1,54 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        
+        <link type="text/css" rel = "stylesheet" href="stylesheet.css"/>;
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="css/mdb.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-    <div class = "container">
-        <h3>umd4year</h3>
-        <div class = "row text-left ">
-            <div class = "col-5">
-                <div class = "card">
-                    <p>Majors and stuffs</p>
-                </div>
-            </div><!--col-->
-            <div class = "col-7">
-                <div class = "card">
-                    <p>The planner</p>
-                </div>
-            </div><!--col-->
-        </div> <!-- row -->
-    </div>
-    <footer class="footer">
-        <div class = "container">
-            <br>
-            <p class = "text-muted">A project for Bitcamp 2017 by Aidan McGovern, Evan McIntire, Jacob Cohen, and Justin Chen.</p>
-        </div>
-    </footer>
-
-    <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/tether.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
-</body>
-
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <nav class = "navbar-fixed red darken-4">
+            <div class = "nav-wrapper">
+                <a href = "#" class = "brand-logo left">gradu8</a>
+            </div>
+        </nav>
+        
+        <!--Actual content-->
+        <main>
+            <div class = "container">
+                <section class = "row">
+                    <div class = "col s12">
+                        
+                    </div>
+                </section> <!--row-->
+                <section class = "row">
+                    <div class = "col s4">
+                    Requirements
+                    </div>
+                    <div class = "col s8">
+                        <div class = "row planner-tabs">
+                            <div class = "col s8">
+                                <ul class = "tabs">
+                                    <li class = "tab col s2"><a href="#year1">Year 1</a></li>
+                                    <li class = "tab col s2"><a href="#year2">Year 2</a></li>
+                                    <li class = "tab col s2"><a href="#year3">Year 3</a></li>
+                                    <li class = "tab col s2"><a href="#year4">Year 4</a></li>
+                                </ul>
+                            </div>
+                        </div><!--planner-tabs-->
+                        <div class = "col s9" id = "year1">
+                        This is year 1 content.
+                        </div><!--year1-->
+                        <div class = "col s9" id = "year2">
+                        This is year 2 content
+                        </div><!--year2-->
+                        <div class = "col s9" id = "year3">
+                        This is year 3 content
+                        </div><!--year3-->
+                        <div class = "col s9" id = "year4">
+                        This is year 4 content
+                        </div><!--year4-->
+                    </div>
+                </section> <!-- row -->
+            </div><!--container-->
+        </main>
+        
+        <footer class="page-footer red darken-4">
+          <div class="footer-copyright">
+            <div class="container">
+            Aidan McGovern, Evan McIntire, Jacob Cohen, Justin Chen
+            <a class="grey-text text-lighten-4 right" href="#!">BitCamp 2017</a>
+            </div>
+          </div>
+        </footer>
+        
+        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="script1.js"></script>
+    </body>
 </html>

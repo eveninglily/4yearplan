@@ -1,52 +1,14 @@
+
 body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-}
-
-.navbar{
-  width:100%;
-    color: white;
-}
-
-body{
-    overflow-y: hidden;
-    background-color: #F5F5F5
-}
-
-
-.row{
-    margin-top: 100px;
-    height: 80vh;
-}
-.scrolling{
-    height: 50vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-
-.card-title, row{
-    padding-top: 0;
-}
-
-p.col{
-    text-align: center;
-}
-h3{
-    padding: 30px 0px 30px 0px;
-}
-
-.dropdown{
-    width: 100%;
-    height: 50px;
     display: flex;
-    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-/**
-Buttons!!1!
-**/
-.btn{
-    align-content: center;
-    width: 100%
+main {
+    flex: 1 0 auto;
+}
+
+col{
+    width: 100%;
 }

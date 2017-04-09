@@ -48,6 +48,7 @@ var testCourse2 = new Course({
     "generic": false
 });
 
+
 $(document).ready(function(){
     $('ul.tabs').tabs();
     $('.collapsible').collapsible();

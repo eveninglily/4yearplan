@@ -37,6 +37,15 @@ var courseMap = {
         "CMSC451",
         "CMSC460",
         "CMSC466"
+    ],
+    "MATHXXX": [
+        "MATH240",
+        "MATH241",
+        "MATH246"
+    ],
+    "STAT4XX": [
+        "STAT400",
+        "STAT401"
     ]
 }
 
@@ -140,10 +149,11 @@ var geneds2 = {
     ]
 }
 
-function generateModalContent(courseIds) {
-    console.log(courseIds);
+var genedId = '';
+
+function generateModalContent(courseIds, callerId) {
+    $('#class-pick-list').empty();
     for(var i = 0; i < courseIds.length; i++) {
-        console.log(i);
         for(var j = 0; j < courseMap[courseIds[i]].length; j++) {
             getCourseData(courseMap[courseIds[i]][j], function(data) {
                 var elem = $('<div>');
@@ -155,7 +165,17 @@ function generateModalContent(courseIds) {
                 var newElement = $('<li>')
                                 .addClass('collection-item modal-class-choice')
                                 .html(elem)
-                                .appendTo('#class-pick-list');
+                                .appendTo('#class-pick-list').on('click', function() {
+                                    var course = new Course({
+                                        name: [data.course_id],
+                                        credits: 3,
+                                        fulfills: ["Major"],
+                                    });
+
+                                    $('#' + callerId).remove();
+                                    addCourse(course, callerId[0]);
+                                    $('#class-picker').modal('close');
+                                });
                 })
 
         }
@@ -169,30 +189,40 @@ function generateGenEdModalContent() {
             if($('#' + key.toLowerCase() + '-check').is(":checked")) {
                 for(var i = 0; i < geneds2[key].length; i++) {
                     getCourseData(geneds2[key][i], function(data) {
-                    var elem = $('<div>');
-                    var holder = $('<div>').addClass('chips-holder');
-                    for(var i = 0; i < data.gen_ed.length; i++) {
-                        holder.append(
-                        $("<div>")
-                            .addClass('chip tooltipped')
-                            .attr("data-position", "bottom")
-                            .attr("data-delay", "30")
-                            .attr("data-tooltip", tooltipMap[data.gen_ed[i]])
-                            .html(data.gen_ed[i])
-                        );
+                        var elem = $('<div>');
+                        var holder = $('<div>').addClass('chips-holder');
+                        for(var i = 0; i < data.gen_ed.length; i++) {
+                            holder.append(
+                            $("<div>")
+                                .addClass('chip tooltipped')
+                                .attr("data-position", "bottom")
+                                .attr("data-delay", "30")
+                                .attr("data-tooltip", tooltipMap[data.gen_ed[i]])
+                                .html(data.gen_ed[i])
+                            );
 
-                    }
+                        }
 
-                    elem.append(
-                        $('<h6>').html(data.course_id + " - " + data.name).append(holder)
-                    ).append(
-                        $('<p>').html(data.description)
-                    )
-                    var newElement = $('<li>')
-                                    .addClass('collection-item modal-class-choice')
-                                    .html(elem)
-                                    .appendTo('#gened-pick-list');
-                            $('.tooltipped').tooltip({delay: 50});
+                        elem.append(
+                            $('<h6>').html(data.course_id + " - " + data.name).append(holder)
+                        ).append(
+                            $('<p>').html(data.description)
+                        )
+                        var newElement = $('<li>')
+                                        .addClass('collection-item modal-class-choice')
+                                        .html(elem)
+                                        .appendTo('#gened-pick-list').on('click', function() {
+                                            var course = new Course({
+                                                name: [data.course_id],
+                                                credits: 3,
+                                                fulfills: ["Major"],
+                                            });
+
+                                            $('#' + genedId).remove();
+                                            addCourse(course, genedId[0]);
+                                            $('#gened-picker').modal('close');
+                                    });;
+                                $('.tooltipped').tooltip({delay: 50});
                     })
                 }
             }
@@ -207,7 +237,6 @@ function getCourseData(id, callback) {
 }
 
 function addCourse(course, semNum) {
-    console.log(course)
     var dispName = course.ids.join("/");
     var fufills = course.fulfills;
     var chips = $('<div>').addClass('chips-holder');
@@ -223,7 +252,7 @@ function addCourse(course, semNum) {
             );
         }
         getCourseData(course.ids[0], function(data) {
-            var course = $('<li>').append(
+            $('<li>').append(
             $('<div>').addClass('collapsible-header')
                       .append($('<span>').html(data.course_id + " - " + data.name)).append(chips)
             ).append(
@@ -236,9 +265,24 @@ function addCourse(course, semNum) {
         });
         return;
     } else {
-        chips.append($('<a>').addClass("waves-effect waves-light btn red").attr('href', '#gened-picker').html("Pick Class"));
+        var type = "";
+
+        if(course.ids[0] == "Course") {
+            type = '#gened-picker';
+        } else {
+            type = '#class-picker';
+        }
+        var cl = course;
+        var id = semNum + '-' + $("#sem" + semNum + " li").length;
+
+        chips.append($('<a>').addClass("waves-effect waves-light btn red class-btn").attr('href', type).html("Pick Class").on('click', function() {
+            if(cl.ids[0] != "Course") {
+                generateModalContent(cl.ids, id);
+            }
+            genedId = id;
+        }));
     }
-    var course = $('<li>').append(
+    var course = $('<li>').attr('id', id).append(
         $('<div>').addClass('collapsible-header')
                   .html(dispName).append(chips)
     ).addClass('course').appendTo("#sem" + semNum);
@@ -268,5 +312,6 @@ $(document).ready(function(){
     $('#gened-picker input').on('change', function() {
         generateGenEdModalContent();
     });
+
     processSemesters();
 });

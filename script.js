@@ -7,16 +7,20 @@ var tooltipMap = {
 function addCourse(course) {
     var dispName = course.ids.join("/");
     var fufills = ["Major", "AR", "MA"]
-    var chips = $('<div>');
-    for(var i = 0; i < fufills.length; i++) {
-        chips.append(
-        $("<div>")
-            .addClass('chip tooltipped')
-            .attr("data-position", "bottom")
-            .attr("data-delay", "30")
-            .attr("data-tooltip", tooltipMap[fufills[i]])
-            .html(fufills[i])
-        ).addClass('chips-holder');
+    var chips = $('<div>').addClass('chips-holder');
+    if(!course.generic) {
+        for(var i = 0; i < fufills.length; i++) {
+            chips.append(
+            $("<div>")
+                .addClass('chip tooltipped')
+                .attr("data-position", "bottom")
+                .attr("data-delay", "30")
+                .attr("data-tooltip", tooltipMap[fufills[i]])
+                .html(fufills[i])
+            );
+        }
+    } else {
+        chips.append($('<a>').addClass("waves-effect waves-light btn red").html("Pick Class"));
     }
 
     var course = $('<li>').append(
@@ -25,14 +29,20 @@ function addCourse(course) {
     ).append(
         $('<div>').addClass('collapsible-body')
                   .html("Description")
-    ).appendTo("#year1-courses");
-    $('.collapsible').collapsible({
-        accordion: false
-    });
+    ).addClass('course').appendTo("#year1-courses");
+
+    $('.collapsible').collapsible();
 }
 
 var testCourse = new Course({
-    "name": ["MATH140"],
+    "name": ["CMSC4XX"],
+    "prereqs": [],
+    "credits": 3,
+    "generic": true
+});
+
+var testCourse2 = new Course({
+    "name": ["MATH141"],
     "prereqs": [],
     "credits": 4,
     "generic": false
@@ -40,10 +50,9 @@ var testCourse = new Course({
 
 $(document).ready(function(){
     $('ul.tabs').tabs();
-    $('.collapsible').collapsible({
-        accordion: false
-    });
+    $('.collapsible').collapsible();
     addCourse(testCourse);
+    addCourse(testCourse2);
     $('.chips-initial').material_chip('data');
     $('.tooltipped').tooltip({delay: 50});
 });

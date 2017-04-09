@@ -1,7 +1,7 @@
 function getJSON(file) {
-    $.getJSON(file, function(data) {
+    /*$.getJSON(file, function(data) {
         console.log(data);
-    });
+    });*/
 }
 
 getJSON('https://evanmcintire.com/gradu8/majors/CMSC.json');
@@ -51,7 +51,7 @@ function loadToClasses(json, loadGeneric) {
     return ret;
 }
 
-var geneds = JSON.parse(fs.readFileSync('majors/GE.json', 'utf8'));
+var geneds = getJSON("https://evanmcintire.com/gradu8/majors/GE.json");
 var semesters = [
     { "courses":[], "credits": 0 },
     { "courses":[], "credits": 0 },
@@ -190,12 +190,12 @@ function insertPlaceholders() {
 
 var courses = {};
 var majors = {
-    "CMSC": JSON.parse(fs.readFileSync('majors/MATH.json', 'utf8'))
+    //"CMSC": getJSON("https://evanmcintire.com/gradu8/majors/CMSC.json")
 }
 
 var reqs = {};
 
-for(var key in majors["CMSC"].requirements) {
+/**for(var key in majors["CMSC"].requirements) {
     if(majors["CMSC"].requirements.hasOwnProperty(key)) {
         if(!majors["CMSC"].requirements[key].generic) {
             courses[majors["CMSC"].requirements[key].name] = (new Course(majors["CMSC"].requirements[key]));
@@ -213,3 +213,4 @@ insertPlaceholders();
 console.log(verifyGroups(["CMSC411", "CMSC412", "CMSC420", "CMSC430", "CMSC433", "CMSC451", "CMSC460"]));
 
 console.log(JSON.stringify(semesters));
+*/

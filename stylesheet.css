@@ -12,3 +12,8 @@ main {
 col{
     width: 100%;
 }
+
+.chips-holder {
+    display: inline-block;
+    float: right;
+}
